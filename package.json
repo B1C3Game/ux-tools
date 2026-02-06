@@ -18,11 +18,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/b1c3/ux-tools.git"
+    "url": "https://github.com/B1C3Game/ux-tools.git"
   },
-  "homepage": "https://github.com/b1c3/ux-tools#readme",
+  "homepage": "https://github.com/B1C3Game/ux-tools#readme",
   "bugs": {
-    "url": "https://github.com/b1c3/ux-tools/issues"
+    "url": "https://github.com/B1C3Game/ux-tools/issues"
   },
   "files": [
     "dist"
