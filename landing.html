@@ -1163,6 +1163,95 @@ import type { TruncateOptions } from 'b1c3-ux-tools';</div>
     </div>
   </section>
 
+  <!-- How It All Works -->
+  <section class="section">
+    <div class="container">
+      <h2>How B1C3 UX Tools Works</h2>
+      <p style="font-size: 18px; color: #6b7280; margin-bottom: 32px;">Understand how developers use this tool, who benefits, and how it helps teams manage accessibility in their IT environment.</p>
+
+      <div class="grid grid--2">
+        <div class="card feature">
+          <h3>🎯 How It's Used</h3>
+          <p>Developers integrate B1C3 UX Tools to access pre-built utilities for:</p>
+          <ul style="text-align: left; margin-top: 16px;">
+            <li><strong>Form validation</strong> (isValidEmail, sanitizeInput)</li>
+            <li><strong>Focus management</strong> (useFocusTrap, getFocusableElements) — critical for keyboard navigation</li>
+            <li><strong>DOM operations</strong> (measureTextWidth, truncateText)</li>
+            <li><strong>Common utilities</strong> (debounce, throttle, clamp)</li>
+          </ul>
+        </div>
+
+        <div class="card feature">
+          <h3>👥 Target Users</h3>
+          <p>B1C3 UX Tools serves three key audiences:</p>
+          <ul style="text-align: left; margin-top: 16px;">
+            <li><strong>Web developers</strong> building interfaces within the B1C3 ecosystem</li>
+            <li><strong>UX engineers</strong> ensuring consistent patterns across projects</li>
+            <li><strong>Accessibility specialists</strong> enforcing WCAG compliance</li>
+          </ul>
+        </div>
+
+        <div class="card feature">
+          <h3>🏢 IT Environment Management</h3>
+          <p><strong>What it solves for your IT organization:</strong></p>
+          <ul style="text-align: left; margin-top: 16px;">
+            <li><strong>Consistency</strong> — Eliminates duplicate utility code; all projects use the same functions</li>
+            <li><strong>Quality assurance</strong> — Every utility is tested and documented</li>
+            <li><strong>Time savings</strong> — Developers don't rebuild common functionality</li>
+            <li><strong>Dependency control</strong> — Minimal, lightweight dependencies reduce maintenance overhead</li>
+          </ul>
+        </div>
+
+        <div class="card feature">
+          <h3>♿ Accessibility Compliance Output</h3>
+          <p><strong>Key accessibility enforcement mechanisms:</strong></p>
+          <ul style="text-align: left; margin-top: 16px;">
+            <li><strong>Keyboard Navigation</strong> — useFocusTrap() and getFocusableElements() enable fully keyboard-navigable interfaces</li>
+            <li><strong>Screen Reader Support</strong> — Utilities include proper ARIA labels and semantic HTML guidance</li>
+            <li><strong>Color Contrast</strong> — Testing standards mandate 4.5:1 contrast ratio for text (WCAG AA)</li>
+            <li><strong>Motion Preferences</strong> — Utilities respect prefers-reduced-motion for accessibility</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tech-detail" style="margin-top: 48px;">
+        <button class="tech-toggle" aria-expanded="false" aria-controls="tech-compliance-details">
+          <span class="tech-icon">▼</span>
+          <span>Accessibility Compliance Details</span>
+        </button>
+        <div id="tech-compliance-details" class="tech-content">
+          <h4>WCAG 2.1 Level AA Testing Framework</h4>
+          <p><strong>Pre-Development Accessibility Checklist:</strong></p>
+          <ul>
+            <li>Does the utility involve keyboard interaction? (requires focus management)</li>
+            <li>Does it use color? (requires contrast ratio testing)</li>
+            <li>Does it involve animations? (requires prefers-reduced-motion support)</li>
+            <li>Is it form-related? (requires proper labels and error messaging)</li>
+            <li>Does it display content dynamically? (requires aria-live regions)</li>
+          </ul>
+          <p><strong>Testing Standards & Output:</strong></p>
+          <ul>
+            <li><strong>Keyboard Navigation Testing</strong> — Tab/Shift+Tab reverse navigation with documented test results</li>
+            <li><strong>Screen Reader Testing</strong> — NVDA (Windows) and VoiceOver (macOS) compatibility verified</li>
+            <li><strong>Color Contrast Verification</strong> — WebAIM Contrast Checker validation (minimum 4.5:1)</li>
+            <li><strong>Motion Respects User Preferences</strong> — CSS media queries honor prefers-reduced-motion settings</li>
+            <li><strong>Focus Management</strong> — Clear, visible focus indicators with restoration for modals</li>
+          </ul>
+          <p><strong>Documentation Deliverables for Compliance:</strong></p>
+          <ul>
+            <li>Pre-development and post-development accessibility checklists</li>
+            <li>Testing procedures with keyboard/screen reader test cases</li>
+            <li>Automated accessibility checklists required in pull requests</li>
+            <li>Tools integration guidance (Axe DevTools, WCAG standards)</li>
+            <li>Patterns documentation showing accessible vs. anti-patterns</li>
+            <li>JSDoc comments with @accessibility tags on every function</li>
+          </ul>
+          <p><strong>Key Principle:</strong> Accessibility is built-in, not retrofitted. Developers don't accidentally create inaccessible components—compliance is enforced from day one.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Trust Signals -->
   <section class="section section--alt">
     <div class="container">
