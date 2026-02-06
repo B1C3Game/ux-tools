@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="B1C3 UX Tools Product Roadmap - See what's coming in the future of accessible development tools." />
+  <meta name="theme-color" content="#1a365d" />
+  <title>Product Roadmap — B1C3 UX Tools</title>
+  
+  <style>
+    /* Reset & Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: #374151;
+      background: #ffffff;
+    }
+
+    /* Typography */
+    h1 {
+      font-size: 48px;
+      line-height: 1.2;
+      font-weight: 700;
+      color: #1a365d;
+      margin-bottom: 24px;
+    }
+
+    h2 {
+      font-size: 32px;
+      line-height: 1.3;
+      font-weight: 700;
+      color: #1a365d;
+      margin-bottom: 24px;
+    }
+
+    h3 {
+      font-size: 24px;
+      line-height: 1.4;
+      font-weight: 600;
+      color: #1a365d;
+      margin-bottom: 16px;
+    }
+
+    p {
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+
+    /* Links */
+    a {
+      color: #0891b2;
+      text-decoration: none;
+      transition: color 200ms ease-out;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    a:focus {
+      outline: 2px solid #1a365d;
+      outline-offset: 4px;
+      border-radius: 2px;
+    }
+
+    /* Buttons */
+    .button {
+      display: inline-block;
+      padding: 12px 24px;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 200ms ease-out;
+      text-decoration: none;
+      text-align: center;
+    }
+
+    .button:focus {
+      outline: 2px solid #1a365d;
+      outline-offset: 2px;
+    }
+
+    .button--primary {
+      background: #0891b2;
+      color: white;
+    }
+
+    .button--primary:hover {
+      background: #0369a1;
+    }
+
+    .button--secondary {
+      background: #f3f4f6;
+      color: #1a365d;
+      border: 1px solid #e5e7eb;
+    }
+
+    .button--secondary:hover {
+      background: #f9fafb;
+    }
+
+    /* Containers & Layout */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section {
+      padding: 48px 0;
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      h1 {
+        font-size: 32px;
+      }
+
+      h2 {
+        font-size: 24px;
+      }
+
+      h3 {
+        font-size: 20px;
+      }
+
+      .section {
+        padding: 32px 0;
+      }
+
+      .container {
+        padding: 0 16px;
+      }
+    }
+
+    /* Accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* Header & Navigation */
+    header {
+      background: white;
+      border-bottom: 1px solid #e5e7eb;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1a365d;
+      text-decoration: none;
+    }
+
+    .logo:hover {
+      text-decoration: none;
+    }
+
+    nav {
+      display: flex;
+      gap: 32px;
+    }
+
+    nav a {
+      font-size: 14px;
+      font-weight: 600;
+      color: #374151;
+    }
+
+    nav a:hover {
+      color: #0891b2;
+    }
+
+    @media (max-width: 640px) {
+      nav {
+        display: none;
+      }
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #1a365d 0%, #0555a1 100%);
+      color: white;
+      padding: 64px 0;
+      text-align: center;
+    }
+
+    .hero h1 {
+      color: white;
+      font-size: 56px;
+    }
+
+    .hero-subtitle {
+      font-size: 20px;
+      margin-bottom: 32px;
+      opacity: 0.95;
+    }
+
+    @media (max-width: 640px) {
+      .hero {
+        padding: 48px 0;
+      }
+
+      .hero h1 {
+        font-size: 36px;
+      }
+
+      .hero-subtitle {
+        font-size: 18px;
+      }
+    }
+
+    /* Roadmap Styles */
+    .roadmap-timeline {
+      margin-top: 48px;
+    }
+
+    .phase-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 48px 0 24px 0;
+      padding-bottom: 16px;
+      border-bottom: 3px solid #0891b2;
+    }
+
+    .phase-label {
+      background: #0891b2;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .phase-timeline {
+      color: #6b7280;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    .feature-card {
+      background: white;
+      border: 2px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 24px;
+      transition: all 200ms ease-out;
+      position: relative;
+    }
+
+    .feature-card:hover {
+      border-color: #0891b2;
+      box-shadow: 0 4px 16px rgba(8, 145, 178, 0.15);
+      transform: translateY(-4px);
+    }
+
+    .feature-card-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #1a365d;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .feature-card-description {
+      font-size: 14px;
+      color: #6b7280;
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+
+    .feature-card-price {
+      font-size: 12px;
+      font-weight: 600;
+      color: #0891b2;
+      background: #f0f9fc;
+      padding: 4px 8px;
+      border-radius: 4px;
+      display: inline-block;
+    }
+
+    .roadmap-cta {
+      text-align: center;
+      margin-top: 32px;
+      padding: 24px;
+      background: #f9fafb;
+      border-radius: 8px;
+    }
+
+    .roadmap-cta p {
+      color: #6b7280;
+      margin-bottom: 16px;
+    }
+
+    /* Technical Details Section */
+    .tech-detail {
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 2px dashed #e5e7eb;
+    }
+
+    .tech-toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #0555a1;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 8px 0;
+      transition: color 200ms ease-out;
+    }
+
+    .tech-toggle:hover {
+      color: #0891b2;
+    }
+
+    .tech-toggle:focus {
+      outline: 2px solid #1a365d;
+      outline-offset: 2px;
+    }
+
+    .tech-icon {
+      display: inline-block;
+      transition: transform 200ms ease-out;
+    }
+
+    .tech-detail.open .tech-icon {
+      transform: rotate(180deg);
+    }
+
+    .tech-content {
+      display: none;
+      margin-top: 16px;
+      padding: 16px;
+      background: #f9fafb;
+      border-radius: 6px;
+      border-left: 3px solid #0891b2;
+    }
+
+    .tech-detail.open .tech-content {
+      display: block;
+    }
+
+    .tech-content h4 {
+      color: #1a365d;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
+    .tech-content p {
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+
+    .tech-content ul {
+      list-style: none;
+      padding-left: 0;
+      margin-bottom: 12px;
+    }
+
+    .tech-content li {
+      font-size: 14px;
+      padding: 4px 0;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .tech-content li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: #0891b2;
+    }
+
+    /* Footer */
+    footer {
+      background: #1a365d;
+      color: white;
+      padding: 48px 0;
+      margin-top: 48px;
+    }
+
+    footer a {
+      color: #0891b2;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 24px;
+      text-align: center;
+      font-size: 14px;
+      color: #9ca3af;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header & Navigation -->
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <a href="landing.html" class="logo">B1C3 UX Tools</a>
+        <nav aria-label="Main navigation">
+          <a href="landing.html#problem">The Problem</a>
+          <a href="landing.html#solution">The Solution</a>
+          <a href="landing.html#features">Features</a>
+          <a href="landing.html#pricing">Pricing</a>
+          <a href="roadmap.html">Roadmap</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h1>Product Roadmap</h1>
+      <p class="hero-subtitle">Building the future of accessible development. Here's what's coming next.</p>
+    </div>
+  </section>
+
+  <!-- Roadmap Content -->
+  <section class="section">
+    <div class="container">
+      <div class="roadmap-timeline">
+        <!-- Phase 2B -->
+        <div class="phase-header">
+          <span class="phase-label">Phase 2B</span>
+          <span class="phase-timeline">Next 6 months (Q1-Q2 2026)</span>
+        </div>
+
+        <div class="feature-grid">
+          <div class="feature-card">
+            <h3 class="feature-card-title">🏢 Enterprise Governance Platform</h3>
+            <p class="feature-card-description">Centralized dashboard for IT teams to track accessibility compliance across all internal apps. Audit trails, policy enforcement, and compliance reporting for large enterprises.</p>
+            <span class="feature-card-price">$50K - $200K/year</span>
+            <div class="tech-detail" style="margin-top: 16px;">
+              <button class="tech-toggle" aria-expanded="false">
+                <span class="tech-icon">▼</span>
+                <span style="font-size: 13px;">Learn more</span>
+              </button>
+              <div class="tech-content">
+                <h4>Why enterprises need this</h4>
+                <p>Fortune 500 companies have 200+ internal apps spread across 20+ teams. Nobody knows which apps are accessible. This platform:</p>
+                <ul>
+                  <li>Centralizes compliance tracking</li>
+                  <li>Enforces org-wide accessibility policies</li>
+                  <li>Provides audit-ready reports for regulators</li>
+                  <li>Integrates with LDAP, Jira, and CI/CD</li>
+                </ul>
+                <p><strong>Target:</strong> IT admins and compliance officers at large enterprises</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="feature-card">
+            <h3 class="feature-card-title">🤖 Automated CI/CD Testing</h3>
+            <p class="feature-card-description">GitHub/GitLab integration that blocks merges on accessibility violations. Automatic testing on every PR with reports and team notifications.</p>
+            <span class="feature-card-price">$49 - $199/month</span>
+            <div class="tech-detail" style="margin-top: 16px;">
+              <button class="tech-toggle" aria-expanded="false">
+                <span class="tech-icon">▼</span>
+                <span style="font-size: 13px;">Learn more</span>
+              </button>
+              <div class="tech-content">
+                <h4>How it works</h4>
+                <p>Every pull request gets automatically tested. Features:</p>
+                <ul>
+                  <li>Runs Axe-core accessibility tests</li>
+                  <li>Blocks merge if violations exceed threshold</li>
+                  <li>Slack/email notifications for teams</li>
+                  <li>Trend tracking over time</li>
+                  <li>Integrates with GitHub Actions, GitLab CI, Azure DevOps</li>
+                </ul>
+                <p><strong>Target:</strong> Dev teams, engineering organizations, SaaS companies</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Phase 2C -->
+        <div class="phase-header">
+          <span class="phase-label">Phase 2C</span>
+          <span class="phase-timeline">6-12 months (Q3-Q4 2026)</span>
+        </div>
+
+        <div class="feature-grid">
+          <div class="feature-card">
+            <h3 class="feature-card-title">🎨 Component Playground</h3>
+            <p class="feature-card-description">Visual builder to create accessible components. Generate code automatically with accessibility testing built-in. Figma integration and design system documentation.</p>
+            <span class="feature-card-price">$99 - $499/month</span>
+            <div class="tech-detail" style="margin-top: 16px;">
+              <button class="tech-toggle" aria-expanded="false">
+                <span class="tech-icon">▼</span>
+                <span style="font-size: 13px;">Learn more</span>
+              </button>
+              <div class="tech-content">
+                <h4>Build components faster</h4>
+                <ul>
+                  <li>Drag-drop component builder</li>
+                  <li>Real-time accessibility testing</li>
+                  <li>Auto-generate React/Vue/Svelte code</li>
+                  <li>Design token management and sync</li>
+                  <li>Team collaboration (comments, reviews)</li>
+                  <li>Figma plugin integration</li>
+                </ul>
+                <p><strong>Target:</strong> Design system teams, agencies, product teams</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="feature-card">
+            <h3 class="feature-card-title">🧪 Browser Extension Toolkit</h3>
+            <p class="feature-card-description">Quick a11y testing on any website. One-click audit, keyboard tester, color contrast checker, screen reader simulator, heading visualizer.</p>
+            <span class="feature-card-price">Free + $9.99/month Premium</span>
+            <div class="tech-detail" style="margin-top: 16px;">
+              <button class="tech-toggle" aria-expanded="false">
+                <span class="tech-icon">▼</span>
+                <span style="font-size: 13px;">Learn more</span>
+              </button>
+              <div class="tech-content">
+                <h4>Built-in testing tools</h4>
+                <ul>
+                  <li>One-click accessibility audit</li>
+                  <li>Keyboard navigation tester</li>
+                  <li>Color contrast overlay</li>
+                  <li>Screen reader simulator</li>
+                  <li>Heading structure visualizer</li>
+                  <li>Focus order indicator</li>
+                </ul>
+                <p><strong>Target:</strong> Individual devs, consultants, QA teams, accessibility educators</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="feature-card">
+            <h3 class="feature-card-title">📚 Training & Certification</h3>
+            <p class="feature-card-description">Self-paced courses and professional certifications. Tracks for designers, developers, PMs, and QA. Corporate workshops available.</p>
+            <span class="feature-card-price">$99 - $10K / course</span>
+            <div class="tech-detail" style="margin-top: 16px;">
+              <button class="tech-toggle" aria-expanded="false">
+                <span class="tech-icon">▼</span>
+                <span style="font-size: 13px;">Learn more</span>
+              </button>
+              <div class="tech-content">
+                <h4>Learning paths for everyone</h4>
+                <ul>
+                  <li>Self-paced video courses</li>
+                  <li>Hands-on lab exercises</li>
+                  <li>Certification exams</li>
+                  <li>Corporate workshops (on-site or remote)</li>
+                  <li>Tracks: Designers, Developers, PMs, QA</li>
+                  <li>Certification badge for portfolios</li>
+                </ul>
+                <p><strong>Target:</strong> Team leaders wanting to upskill, enterprises, consultants</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Phase 3 -->
+        <div class="phase-header">
+          <span class="phase-label">Phase 3</span>
+          <span class="phase-timeline">12-18 months (Q1-Q2 2027)</span>
+        </div>
+
+        <div class="feature-grid">
+          <div class="feature-card">
+            <h3 class="feature-card-title">🧠 AI-Powered Auditing</h3>
+            <p class="feature-card-description">Machine learning detects accessibility issues humans miss. Smart prioritization, contextual fixes, image alt-text quality scoring.</p>
+            <span class="feature-card-price">$199 - $999/month</span>
+          </div>
+
+          <div class="feature-card">
+            <h3 class="feature-card-title">🔌 Integration Marketplace</h3>
+            <p class="feature-card-description">Pre-built integrations with dev tools. Figma plugins, Slack bots, Jira extensions, VS Code hints, and npm packages.</p>
+            <span class="feature-card-price">Included in Pro+</span>
+          </div>
+
+          <div class="feature-card">
+            <h3 class="feature-card-title">📱 Mobile Testing Suite</h3>
+            <p class="feature-card-description">Test accessibility on iOS (VoiceOver) and Android (TalkBack). React Native support, device cloud integration.</p>
+            <span class="feature-card-price">$299 - $999/month</span>
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="roadmap-cta">
+          <h3 style="color: #1a365d; margin-bottom: 12px;">Want First Access?</h3>
+          <p>Get early access to new features, vote on what to build next, and shape the future of B1C3.</p>
+          <a href="landing.html#contact" class="button button--primary">Join the Early Adopter Program</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 B1C3. Made with accessibility-first principles. <a href="landing.html">← Back to Home</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript for expandable sections -->
+  <script>
+    // Technical Details Toggle Functionality
+    document.querySelectorAll('.tech-toggle').forEach(toggle => {
+      toggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        const detail = toggle.closest('.tech-detail');
+        const isOpen = detail.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', isOpen);
+      });
+
+      // Keyboard support for accessibility
+      toggle.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggle.click();
+        }
+      });
+
+      // Make toggle element keyboard accessible
+      toggle.setAttribute('tabindex', '0');
+      toggle.setAttribute('role', 'button');
+    });
+  </script>
+</body>
+</html>
