@@ -1,0 +1,51 @@
+{
+  "name": "b1c3-ux-tools",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "description": "Production-ready accessibility utilities for modern web applications. WCAG 2.1 AA compliant.",
+  "keywords": [
+    "accessibility",
+    "a11y",
+    "wcag",
+    "ux",
+    "utilities",
+    "form-validation",
+    "focus-management",
+    "typescript"
+  ],
+  "author": "B1C3",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/b1c3/ux-tools.git"
+  },
+  "homepage": "https://github.com/b1c3/ux-tools#readme",
+  "bugs": {
+    "url": "https://github.com/b1c3/ux-tools/issues"
+  },
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts --sourcemap --clean",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest",
+    "test:coverage": "vitest run --coverage"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.0",
+    "@vitest/coverage-v8": "^1.1.0",
+    "jsdom": "^24.0.0",
+    "tsup": "^8.3.0",
+    "typescript": "^5.7.0",
+    "vitest": "^1.1.0"
+  }
+}
