@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B1C3 UX Tools - Interactive Playground</title>
+    <script src="https://unpkg.com/b1c3-ux-tools@latest/dist/index.js"></script>
+    <style>
+        :root {
+            --b1c3-primary-navy: #1a365d;
+            --b1c3-primary-teal: #0891b2;
+            --b1c3-primary-white: #ffffff;
+            --b1c3-accent-success: #059669;
+            --b1c3-accent-warning: #d97706;
+            --b1c3-accent-error: #dc2626;
+            --b1c3-gray-50: #f9fafb;
+            --b1c3-gray-100: #f3f4f6;
+            --b1c3-gray-200: #e5e7eb;
+            --b1c3-gray-400: #9ca3af;
+            --b1c3-gray-700: #374151;
+            --b1c3-gray-900: #111827;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--b1c3-gray-900);
+            background: var(--b1c3-gray-50);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .header h1 {
+            color: var(--b1c3-primary-navy);
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            color: var(--b1c3-gray-700);
+            font-size: 1.1rem;
+        }
+
+        .playground-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 2rem;
+        }
+
+        .playground-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--b1c3-gray-200);
+            overflow: hidden;
+        }
+
+        .card-header {
+            background: var(--b1c3-primary-navy);
+            color: white;
+            padding: 1rem 1.5rem;
+            font-weight: 600;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .demo-section {
+            margin-bottom: 2rem;
+        }
+
+        .demo-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .demo-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--b1c3-primary-navy);
+            margin-bottom: 1rem;
+        }
+
+        .demo-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .control-label {
+            font-weight: 500;
+            color: var(--b1c3-gray-700);
+        }
+
+        .control-input {
+            padding: 8px 12px;
+            border: 1px solid var(--b1c3-gray-400);
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .control-input:focus {
+            outline: none;
+            border-color: var(--b1c3-primary-teal);
+            box-shadow: 0 0 0 2px rgba(8, 145, 178, 0.2);
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 14px;
+        }
+
+        .btn-primary {
+            background: var(--b1c3-primary-teal);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #0284a3;
+        }
+
+        .btn-secondary {
+            background: var(--b1c3-gray-100);
+            color: var(--b1c3-gray-700);
+            border: 1px solid var(--b1c3-gray-200);
+        }
+
+        .btn-secondary:hover {
+            background: var(--b1c3-gray-200);
+        }
+
+        .demo-output {
+            background: var(--b1c3-gray-50);
+            border: 1px solid var(--b1c3-gray-200);
+            border-radius: 6px;
+            padding: 1rem;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 14px;
+            white-space: pre-wrap;
+            word-break: break-word;
+            min-height: 60px;
+        }
+
+        .demo-result {
+            margin-top: 0.5rem;
+            padding: 0.5rem;
+            background: var(--b1c3-accent-success);
+            color: white;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        .demo-error {
+            margin-top: 0.5rem;
+            padding: 0.5rem;
+            background: var(--b1c3-accent-error);
+            color: white;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        .text-demo {
+            background: var(--b1c3-gray-100);
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            border: 2px dashed var(--b1c3-gray-300);
+        }
+
+        .truncated-text {
+            background: var(--b1c3-primary-teal);
+            color: white;
+            padding: 0.5rem;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .modal-demo {
+            position: relative;
+            height: 200px;
+            border: 1px solid var(--b1c3-gray-300);
+            border-radius: 6px;
+            background: white;
+        }
+
+        .modal-content {
+            padding: 1rem;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .focus-demo {
+            padding: 1rem;
+            border: 2px solid var(--b1c3-primary-teal);
+            border-radius: 6px;
+            background: var(--b1c3-gray-50);
+        }
+
+        .focus-demo button {
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .performance-demo {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .event-log {
+            background: var(--b1c3-gray-900);
+            color: var(--b1c3-gray-100);
+            padding: 0.5rem;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 12px;
+            max-height: 100px;
+            overflow-y: auto;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .playground-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .demo-controls {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>B1C3 UX Tools</h1>
+            <p>Interactive Playground - Try our utilities live</p>
+            <a href="https://github.com/B1C3/b1c3-ux-tools/discussions" class="btn btn-primary" style="margin-top:1rem;display:inline-block;">Feedback & Suggestions</a>
+        </header>
+
+        <div class="playground-grid">
+            <!-- Validation Demo -->
+            <div class="playground-card" title="Validate user input with accessibility-friendly error handling. Supports email, URL validation, and input sanitization.">
+                <div class="card-header">Form Validation <span style="font-size:0.9em;color:#0891b2;" title="Validate user input with accessibility-friendly error handling. Supports email, URL validation, and input sanitization.">?</span></div>
+                <div class="card-content">
+                    <div class="demo-section">
+                        <div class="demo-title">Email Validation</div>
+                        <div class="demo-controls">
+                            <div class="control-group">
+                                <label class="control-label">Email Address:</label>
+                                <input type="email" class="control-input" id="email-input" placeholder="user@example.com">
+                            </div>
+                            <button class="btn btn-primary" onclick="validateEmail()">Validate Email</button>
+                        </div>
+                        <div class="demo-output" id="email-output">Enter an email and click validate...</div>
+                    </div>
+
+                    <div class="demo-section">
+                        <div class="demo-title">Input Sanitization</div>
+                        <div class="demo-controls">
+                            <div class="control-group">
+                                <label class="control-label">Raw Input:</label>
+                                <input type="text" class="control-input" id="sanitize-input" placeholder="<script>alert('xss')</script>">
+                            </div>
+                            <button class="btn btn-primary" onclick="sanitizeInput()">Sanitize Input</button>
+                        </div>
+                        <div class="demo-output" id="sanitize-output">Enter potentially dangerous input...</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Text & Layout Demo -->
+            <div class="playground-card">
+                <div class="card-header">Text & Layout</div>
+                <div class="card-content">
+                    <div class="demo-section">
+                        <div class="demo-title">Text Truncation</div>
+                        <div class="demo-controls">
+                            <div class="control-group">
+                                <label class="control-label">Max Length:</label>
+                                <input type="number" class="control-input" id="truncate-length" value="20">
+                            </div>
+                            <button class="btn btn-primary" onclick="truncateTextDemo()">Truncate Text</button>
+                        </div>
+                        <div class="text-demo">
+                            <div class="truncated-text" id="truncated-result">The quick brown fox jumps over the lazy dog</div>
+                        </div>
+                        <div class="demo-output" id="truncate-output">Click to see truncation result...</div>
+                    </div>
+
+                    <div class="demo-section">
+                        <div class="demo-title">Text Width Measurement</div>
+                        <div class="demo-controls">
+                            <div class="control-group">
+                                <label class="control-label">Text to Measure:</label>
+                                <input type="text" class="control-input" id="measure-input" value="Hello World">
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">Font Size:</label>
+                                <input type="number" class="control-input" id="font-size" value="16">
+                            </div>
+                            <button class="btn btn-primary" onclick="measureText()">Measure Width</button>
+                        </div>
+                        <div class="demo-output" id="measure-output">Click to measure text width...</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Focus Management Demo -->
+            <div class="playground-card">
+                <div class="card-header">Focus Management</div>
+                <div class="card-content">
+                    <div class="demo-section">
+                        <div class="demo-title">Focus Trap Demo</div>
+                        <div class="modal-demo">
+                            <div class="modal-content">
+                                <div class="modal-buttons">
+                                    <button class="btn btn-primary" onclick="openModal()">Open Modal</button>
+                                    <button class="btn btn-secondary" onclick="closeModal()">Close Modal</button>
+                                </div>
+                                <div class="focus-demo" id="focus-container" style="display: none;">
+                                    <p>Focus is trapped in this area. Try tabbing!</p>
+                                    <button class="btn btn-primary">Button 1</button>
+                                    <button class="btn btn-primary">Button 2</button>
+                                    <button class="btn btn-primary">Button 3</button>
+                                    <input type="text" placeholder="Focusable input" class="control-input">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="demo-output" id="focus-output">Use the buttons above to test focus trapping...</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Performance Utils Demo -->
+            <div class="playground-card">
+                <div class="card-header">Performance Utils</div>
+                <div class="card-content">
+                    <div class="demo-section">
+                        <div class="demo-title">Debounce & Throttle</div>
+                        <div class="performance-demo">
+                            <div class="demo-controls">
+                                <button class="btn btn-primary" onclick="startRapidEvents()">Start Rapid Events</button>
+                                <button class="btn btn-secondary" onclick="stopRapidEvents()">Stop</button>
+                            </div>
+                            <div class="event-log" id="event-log">Event log will appear here...</div>
+                        </div>
+                        <div class="demo-output" id="performance-output">Click start to see debounced vs throttled events...</div>
+                    </div>
+
+                    <div class="demo-section">
+                        <div class="demo-title">Value Clamping</div>
+                        <div class="demo-controls">
+                            <div class="control-group">
+                                <label class="control-label">Value:</label>
+                                <input type="number" class="control-input" id="clamp-value" value="15">
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">Min:</label>
+                                <input type="number" class="control-input" id="clamp-min" value="0">
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">Max:</label>
+                                <input type="number" class="control-input" id="clamp-max" value="10">
+                            </div>
+                            <button class="btn btn-primary" onclick="clampValue()">Clamp Value</button>
+                        </div>
+                        <div class="demo-output" id="clamp-output">Enter values and click clamp...</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Design Tokens Demo -->
+            <div class="playground-card">
+                <div class="card-header">Design Tokens</div>
+                <div class="card-content">
+                    <div class="demo-section">
+                        <div class="demo-title">Color Palette</div>
+                        <div class="demo-controls">
+                            <button class="btn btn-primary" onclick="applyTokens()">Apply Design Tokens</button>
+                            <button class="btn btn-secondary" onclick="showTokenValues()">Show Token Values</button>
+                        </div>
+                        <div class="demo-output" id="tokens-output">Click to apply design tokens to the page...</div>
+                    </div>
+
+                    <div class="demo-section">
+                        <div class="demo-title">CSS Variables Demo</div>
+                        <div style="background: var(--b1c3-primary-teal); color: var(--b1c3-primary-white); padding: 1rem; border-radius: 6px; margin-top: 1rem;">
+                            This box uses CSS variables from B1C3 tokens!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Make utilities available globally
+        const {
+            isValidEmail,
+            sanitizeInput,
+            truncateText,
+            measureTextWidth,
+            useFocusTrap,
+            getFocusableElements,
+            debounce,
+            throttle,
+            clamp,
+            applyB1c3Tokens,
+            b1c3Tokens
+        } = window.B1C3UXTools;
+
+        let modalCleanup = null;
+        let eventInterval = null;
+        let eventCount = 0;
+
+        // Validation demos
+        function validateEmail() {
+            const email = document.getElementById('email-input').value;
+            const isValid = isValidEmail(email);
+            const output = document.getElementById('email-output');
+
+            output.innerHTML = `isValidEmail("${email}") → <strong>${isValid}</strong>`;
+            output.className = isValid ? 'demo-result' : 'demo-error';
+        }
+
+        function sanitizeInputDemo() {
+            const input = document.getElementById('sanitize-input').value;
+            const sanitized = sanitizeInput(input);
+            const output = document.getElementById('sanitize-output');
+
+            output.innerHTML = `sanitizeInput("${input}") → "${sanitized}"`;
+        }
+
+        // Text demos
+        function truncateTextDemo() {
+            const maxLength = parseInt(document.getElementById('truncate-length').value);
+            const originalText = "The quick brown fox jumps over the lazy dog";
+            const truncated = truncateText({
+                text: originalText,
+                maxLength: maxLength,
+                truncateOn: 'word'
+            });
+
+            document.getElementById('truncated-result').textContent = truncated;
+            document.getElementById('truncate-output').innerHTML =
+                `truncateText({ text: "${originalText}", maxLength: ${maxLength} }) → "${truncated}"`;
+        }
+
+        function measureText() {
+            const text = document.getElementById('measure-input').value;
+            const fontSize = parseInt(document.getElementById('font-size').value);
+
+            try {
+                const width = measureTextWidth(text, fontSize);
+                document.getElementById('measure-output').innerHTML =
+                    `measureTextWidth("${text}", ${fontSize}) → ${width}px`;
+            } catch (error) {
+                document.getElementById('measure-output').innerHTML =
+                    `Error: ${error.message}`;
+                document.getElementById('measure-output').className = 'demo-error';
+            }
+        }
+
+        // Focus demos
+        function openModal() {
+            const container = document.getElementById('focus-container');
+            container.style.display = 'block';
+
+            modalCleanup = useFocusTrap(container, {
+                returnFocus: true,
+                escapeKey: true
+            });
+
+            document.getElementById('focus-output').innerHTML =
+                'Modal opened with focus trap active. Try tabbing through elements!';
+        }
+
+        function closeModal() {
+            const container = document.getElementById('focus-container');
+            container.style.display = 'none';
+
+            if (modalCleanup) {
+                modalCleanup();
+                modalCleanup = null;
+            }
+
+            document.getElementById('focus-output').innerHTML =
+                'Modal closed. Focus returned to trigger button.';
+        }
+
+        // Performance demos
+        function startRapidEvents() {
+            const log = document.getElementById('event-log');
+            const output = document.getElementById('performance-output');
+
+            log.innerHTML = '';
+            eventCount = 0;
+
+            // Simulate rapid events
+            eventInterval = setInterval(() => {
+                eventCount++;
+                log.innerHTML += `Event ${eventCount} fired\n`;
+                log.scrollTop = log.scrollHeight;
+            }, 50);
+
+            output.innerHTML = 'Rapid events started. Watch the log vs debounced output...';
+
+            setTimeout(() => {
+                if (eventInterval) {
+                    clearInterval(eventInterval);
+                    eventInterval = null;
+                    output.innerHTML = `Generated ${eventCount} rapid events. Debounced function would have fired much less frequently.`;
+                }
+            }, 2000);
+        }
+
+        function stopRapidEvents() {
+            if (eventInterval) {
+                clearInterval(eventInterval);
+                eventInterval = null;
+                document.getElementById('performance-output').innerHTML = 'Rapid events stopped.';
+            }
+        }
+
+        function clampValue() {
+            const value = parseFloat(document.getElementById('clamp-value').value);
+            const min = parseFloat(document.getElementById('clamp-min').value);
+            const max = parseFloat(document.getElementById('clamp-max').value);
+
+            const result = clamp(value, min, max);
+            document.getElementById('clamp-output').innerHTML =
+                `clamp(${value}, ${min}, ${max}) → ${result}`;
+        }
+
+        // Design tokens demo
+        function applyTokens() {
+            applyB1c3Tokens();
+            document.getElementById('tokens-output').innerHTML =
+                'Design tokens applied! Check the CSS variables in your browser dev tools.';
+        }
+
+        function showTokenValues() {
+            const tokens = Object.entries(b1c3Tokens.color).map(([category, colors]) => {
+                const colorEntries = Object.entries(colors).map(([name, value]) =>
+                    `  --b1c3-${category}-${name}: ${value}`
+                ).join('\n');
+                return `${category}:\n${colorEntries}`;
+            }).join('\n\n');
+
+            document.getElementById('tokens-output').innerHTML =
+                `<pre>CSS Variables:\n${tokens}</pre>`;
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            // Apply tokens on load for demo
+            applyB1c3Tokens();
+        });
+    </script>
+</body>
+</html></content>
+<parameter name="filePath">c:\Users\lars-\Documents\B1C3\projects\b1c3-ux-tools\docs\interactive-playground.html

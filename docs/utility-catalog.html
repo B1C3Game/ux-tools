@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B1C3 UX Tools - Utility Catalog</title>
+    <style>
+        :root {
+            --b1c3-primary-navy: #1a365d;
+            --b1c3-primary-teal: #0891b2;
+            --b1c3-primary-white: #ffffff;
+            --b1c3-accent-success: #059669;
+            --b1c3-accent-warning: #d97706;
+            --b1c3-accent-error: #dc2626;
+            --b1c3-gray-50: #f9fafb;
+            --b1c3-gray-100: #f3f4f6;
+            --b1c3-gray-200: #e5e7eb;
+            --b1c3-gray-400: #9ca3af;
+            --b1c3-gray-700: #374151;
+            --b1c3-gray-900: #111827;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--b1c3-gray-900);
+            background: var(--b1c3-gray-50);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .header h1 {
+            color: var(--b1c3-primary-navy);
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            color: var(--b1c3-gray-700);
+            font-size: 1.1rem;
+        }
+
+        .search-container {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .search-input {
+            width: 100%;
+            max-width: 400px;
+            padding: 12px 16px;
+            border: 2px solid var(--b1c3-gray-200);
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.2s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--b1c3-primary-teal);
+            box-shadow: 0 0 0 3px rgba(8, 145, 178, 0.1);
+        }
+
+        .utilities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .utility-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid var(--b1c3-gray-200);
+        }
+
+        .utility-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .utility-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .utility-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--b1c3-primary-teal);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+
+        .utility-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--b1c3-primary-navy);
+            margin: 0;
+        }
+
+        .utility-description {
+            color: var(--b1c3-gray-700);
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .utility-functions {
+            margin-bottom: 1rem;
+        }
+
+        .function-tag {
+            display: inline-block;
+            background: var(--b1c3-gray-100);
+            color: var(--b1c3-gray-700);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            font-family: 'Monaco', 'Menlo', monospace;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .utility-links {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.875rem;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .btn-primary {
+            background: var(--b1c3-primary-teal);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #0284a3;
+        }
+
+        .btn-secondary {
+            background: var(--b1c3-gray-100);
+            color: var(--b1c3-gray-700);
+            border: 1px solid var(--b1c3-gray-200);
+        }
+
+        .btn-secondary:hover {
+            background: var(--b1c3-gray-200);
+        }
+
+        .category-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            background: var(--b1c3-accent-success);
+            color: white;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1rem;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 3rem;
+            color: var(--b1c3-gray-500);
+        }
+
+        .no-results h3 {
+            color: var(--b1c3-gray-700);
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .utilities-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .utility-links {
+                flex-direction: column;
+            }
+
+            .btn {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>B1C3 UX Tools</h1>
+            <p>Utility Catalog - Discover and explore our accessibility-first utilities</p>
+            <a href="https://github.com/B1C3/b1c3-ux-tools/discussions" class="btn btn-primary" style="margin-top:1rem;display:inline-block;">Feedback & Suggestions</a>
+        </header>
+
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Search utilities..." id="search-input">
+        </div>
+
+        <div class="utilities-grid" id="utilities-grid">
+            <!-- Validation Utilities -->
+            <div class="utility-card" data-category="validation">
+                <div class="category-badge">Validation</div>
+                <div class="utility-header">
+                    <div class="utility-icon">✓</div>
+                    <h3 class="utility-title">Form Validation</h3>
+                </div>
+                <p class="utility-description">
+                    Validate user input with accessibility-friendly error handling. Supports email, URL validation, and input sanitization.
+                </p>
+                <div class="utility-functions">
+                    <span class="function-tag">isValidEmail()</span>
+                    <span class="function-tag">isValidUrl()</span>
+                    <span class="function-tag">sanitizeInput()</span>
+                </div>
+                <div class="utility-links">
+                    <a href="api/functions/isValidEmail.html" class="btn btn-primary">API Docs</a>
+                    <a href="GETTING_STARTED.html#form-validation" class="btn btn-secondary">Examples</a>
+                </div>
+                <div class="utility-examples">
+                    <strong>Real-world usage:</strong>
+                    <pre><code>if (!isValidEmail(userInput)) {
+  showError('Please enter a valid email address.');
+}</code></pre>
+                </div>
+            </div>
+
+            <!-- DOM Utilities -->
+            <div class="utility-card" data-category="dom">
+                <div class="category-badge">DOM</div>
+                <div class="utility-header">
+                    <div class="utility-icon">📏</div>
+                    <h3 class="utility-title">Text & Layout</h3>
+                </div>
+                <p class="utility-description">
+                    Measure text dimensions, truncate content, and extract visible text for accessibility and responsive design.
+                </p>
+                <div class="utility-functions">
+                    <span class="function-tag">measureTextWidth()</span>
+                    <span class="function-tag">truncateText()</span>
+                    <span class="function-tag">getElementVisibleText()</span>
+                </div>
+                <div class="utility-links">
+                    <a href="api/functions/measureTextWidth.html" class="btn btn-primary">API Docs</a>
+                    <a href="GETTING_STARTED.html#text-truncation" class="btn btn-secondary">Examples</a>
+                </div>
+            </div>
+
+            <!-- Focus Management -->
+            <div class="utility-card" data-category="focus">
+                <div class="category-badge">Focus</div>
+                <div class="utility-header">
+                    <div class="utility-icon">🎯</div>
+                    <h3 class="utility-title">Focus Management</h3>
+                </div>
+                <p class="utility-description">
+                    Essential accessibility utilities for keyboard navigation, focus trapping, and modal management.
+                </p>
+                <div class="utility-functions">
+                    <span class="function-tag">getFocusableElements()</span>
+                    <span class="function-tag">useFocusTrap()</span>
+                </div>
+                <div class="utility-links">
+                    <a href="api/functions/getFocusableElements.html" class="btn btn-primary">API Docs</a>
+                    <a href="GETTING_STARTED.html#modal-management" class="btn btn-secondary">Examples</a>
+                </div>
+            </div>
+
+            <!-- Utility Functions -->
+            <div class="utility-card" data-category="utils">
+                <div class="category-badge">Utils</div>
+                <div class="utility-header">
+                    <div class="utility-icon">⚡</div>
+                    <h3 class="utility-title">Performance Utils</h3>
+                </div>
+                <p class="utility-description">
+                    Essential utility functions for performance optimization, value clamping, and event handling.
+                </p>
+                <div class="utility-functions">
+                    <span class="function-tag">clamp()</span>
+                    <span class="function-tag">debounce()</span>
+                    <span class="function-tag">throttle()</span>
+                </div>
+                <div class="utility-links">
+                    <a href="api/functions/clamp.html" class="btn btn-primary">API Docs</a>
+                    <a href="GETTING_STARTED.html#debounced-search" class="btn btn-secondary">Examples</a>
+                </div>
+            </div>
+
+            <!-- Design Tokens -->
+            <div class="utility-card" data-category="tokens">
+                <div class="category-badge">Design</div>
+                <div class="utility-header">
+                    <div class="utility-icon">🎨</div>
+                    <h3 class="utility-title">Design Tokens</h3>
+                </div>
+                <p class="utility-description">
+                    Consistent color palette and design tokens with guaranteed accessibility contrast ratios.
+                </p>
+                <div class="utility-functions">
+                    <span class="function-tag">applyB1c3Tokens()</span>
+                    <span class="function-tag">b1c3Tokens</span>
+                </div>
+                <div class="utility-links">
+                    <a href="api/variables/b1c3Tokens.html" class="btn btn-primary">API Docs</a>
+                    <a href="GETTING_STARTED.html#styling-with-css-variables" class="btn btn-secondary">Examples</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="no-results" id="no-results" style="display: none;">
+            <h3>No utilities found</h3>
+            <p>Try adjusting your search terms or use synonyms (e.g., "color" instead of "theme").</p>
+        </div>
+    </div>
+
+    <script>
+        const searchInput = document.getElementById('search-input');
+        const utilitiesGrid = document.getElementById('utilities-grid');
+        const noResults = document.getElementById('no-results');
+        const utilityCards = document.querySelectorAll('.utility-card');
+
+        function filterUtilities(searchTerm) {
+            const term = searchTerm.toLowerCase();
+            let visibleCount = 0;
+
+            utilityCards.forEach(card => {
+                const title = card.querySelector('.utility-title').textContent.toLowerCase();
+                const description = card.querySelector('.utility-description').textContent.toLowerCase();
+                const functions = Array.from(card.querySelectorAll('.function-tag'))
+                    .map(tag => tag.textContent.toLowerCase()).join(' ');
+                const category = card.dataset.category.toLowerCase();
+
+                const matches = title.includes(term) ||
+                               description.includes(term) ||
+                               functions.includes(term) ||
+                               category.includes(term);
+
+                card.style.display = matches ? 'block' : 'none';
+                if (matches) visibleCount++;
+            });
+
+            noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+        }
+
+        searchInput.addEventListener('input', (e) => {
+            filterUtilities(e.target.value);
+        });
+
+        // Initialize with all visible
+        filterUtilities('');
+    </script>
+</body>
+</html></content>
+<parameter name="filePath">c:\Users\lars-\Documents\B1C3\projects\b1c3-ux-tools\docs\utility-catalog.html

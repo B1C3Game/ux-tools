@@ -12,3 +12,7 @@ export type { FocusTrapOptions } from './focus';
 
 // Utility functions
 export { clamp, debounce, throttle } from './utils';
+
+// Design tokens
+export { applyB1c3Tokens, b1c3Tokens } from './tokens';
+export type { ApplyB1c3TokensOptions, B1c3Tokens } from './tokens';

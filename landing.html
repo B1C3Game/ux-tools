@@ -1,3 +1,7 @@
+      .gui-guide-actions {
+        flex-direction: column;
+        gap: 8px;
+      }
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -121,6 +125,37 @@
       background: #f9fafb;
     }
 
+    /* Copy Button Style (matches .btn from editor) */
+    .copy-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5em;
+      padding: 0.5em 1.25em;
+      font-size: 1em;
+      font-weight: 600;
+      color: #fff;
+      background: linear-gradient(90deg, #1a365d 0%, #0891b2 100%);
+      border: none;
+      border-radius: 6px;
+      box-shadow: 0 1px 2px rgba(16,30,54,0.08);
+      cursor: pointer;
+      transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
+      outline: none;
+    }
+    .copy-button:hover, .copy-button:focus {
+      background: linear-gradient(90deg, #0891b2 0%, #1a365d 100%);
+      box-shadow: 0 2px 8px rgba(16,30,54,0.12);
+      transform: translateY(-1px) scale(1.03);
+    }
+    .copy-button:active {
+      background: #1a365d;
+      transform: scale(0.98);
+    }
+    .copy-button:focus-visible {
+      outline: 2px solid #0891b2;
+      outline-offset: 2px;
+    }
+
     /* Containers & Layout */
     .container {
       max-width: 1200px;
@@ -186,6 +221,22 @@
       .button {
         display: block;
         width: 100%;
+      }
+
+      .gui-guide-header {
+        gap: 12px;
+      }
+
+      .gui-guide-lede {
+        font-size: 16px;
+      }
+
+      .gui-guide-card {
+        padding: 20px;
+      }
+
+      .swatch-row {
+        gap: 8px;
       }
     }
 
@@ -335,6 +386,64 @@
     .feature p {
       color: #6b7280;
       margin-bottom: 0;
+    }
+
+    /* GUI Guide Section */
+    .gui-guide {
+      background: linear-gradient(180deg, #f9fafb 0%, #f3f4f6 100%);
+    }
+
+    .gui-guide-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .gui-guide-lede {
+      font-size: 18px;
+      color: #6b7280;
+      margin-bottom: 0;
+      max-width: 720px;
+    }
+
+    .gui-guide-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .gui-guide-card {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 24px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    }
+
+    .swatch-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 12px 0 16px;
+    }
+
+    .swatch {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #111827;
+    }
+
+    .swatch-color {
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+      border: 1px solid #e5e7eb;
     }
 
     /* Stats Section */
@@ -828,6 +937,7 @@
         <nav aria-label="Main navigation">
           <a href="#problem">The Problem</a>
           <a href="#solution">The Solution</a>
+          <a href="#gui-guide">GUI Guide</a>
           <a href="#features">Features</a>
           <a href="#pricing">Pricing</a>
           <a href="#faq">FAQ</a>
@@ -845,6 +955,7 @@
       <div class="hero-ctas">
         <a href="#try" class="button button--primary">Start Free Trial</a>
         <a href="#about-b1c3" class="button button--white">Learn About B1C3</a>
+        <a href="#gui-guide" class="button button--secondary">View GUI Guide</a>
       </div>
     </div>
   </section>
@@ -1013,6 +1124,121 @@ const { isValidEmail, debounce } = require('b1c3-ux-tools');
 
 // TypeScript
 import type { TruncateOptions } from 'b1c3-ux-tools';</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GUI Guide -->
+  <section id="gui-guide" class="section section--alt gui-guide">
+    <div class="container">
+      <div class="gui-guide-header">
+        <div>
+          <h2>B1C3 GUI Guide</h2>
+          <p class="gui-guide-lede">A practical, in-page reference for the B1C3 palette and the UI rules that keep workflows accessible, intuitive, and fast.</p>
+        </div>
+        <div class="gui-guide-actions">
+          <a href="docs/B1C3_GUI_GUIDE.md" class="button button--secondary">Open Full Guide</a>
+          <a href="docs/b1c3.tokens.json" class="button button--primary">Tokens JSON</a>
+        </div>
+      </div>
+
+      <div class="grid grid--2">
+        <div class="gui-guide-card">
+          <h3>Palette (Canonical)</h3>
+          <div class="swatch-row" aria-label="B1C3 color swatches">
+            <span class="swatch"><span class="swatch-color" style="background: #1a365d;"></span>Navy #1a365d</span>
+            <span class="swatch"><span class="swatch-color" style="background: #0891b2;"></span>Teal #0891b2</span>
+            <span class="swatch"><span class="swatch-color" style="background: #059669;"></span>Success #059669</span>
+            <span class="swatch"><span class="swatch-color" style="background: #d97706;"></span>Warning #d97706</span>
+            <span class="swatch"><span class="swatch-color" style="background: #dc2626;"></span>Error #dc2626</span>
+            <span class="swatch"><span class="swatch-color" style="background: #f3f4f6;"></span>Gray #f3f4f6</span>
+          </div>
+          <ul class="solution-list">
+            <li><strong>Primary:</strong> Navy #1a365d, Teal #0891b2, White #ffffff</li>
+            <li><strong>Accents:</strong> Success #059669, Warning #d97706, Error #dc2626</li>
+            <li><strong>Grays:</strong> #f9fafb, #f3f4f6, #e5e7eb, #9ca3af, #374151, #111827</li>
+            <li><strong>Contrast:</strong> 4.5:1 minimum for body text</li>
+            <li><strong>Signals:</strong> Never use color alone for meaning</li>
+          </ul>
+
+          <p><strong>CSS Token Baseline:</strong></p>
+          <div class="code-block">:root {
+  --b1c3-primary-navy: #1a365d;
+  --b1c3-primary-teal: #0891b2;
+  --b1c3-primary-white: #ffffff;
+  --b1c3-accent-success: #059669;
+  --b1c3-accent-warning: #d97706;
+  --b1c3-accent-error: #dc2626;
+  --b1c3-gray-50: #f9fafb;
+  --b1c3-gray-100: #f3f4f6;
+  --b1c3-gray-200: #e5e7eb;
+  --b1c3-gray-400: #9ca3af;
+  --b1c3-gray-700: #374151;
+  --b1c3-gray-900: #111827;
+}</div>
+        </div>
+
+        <div class="gui-guide-card">
+          <h3>Usability Principles</h3>
+          <ul class="solution-list">
+            <li>WCAG 2.1 AA minimum, full keyboard navigation</li>
+            <li>Clear hierarchy (H1 -> H2 -> H3) and scannable layouts</li>
+            <li>Short labels, plain language, no jargon</li>
+            <li>Destructive actions require confirmation</li>
+          </ul>
+
+          <h3>Workflow Rules</h3>
+          <ul class="solution-list">
+            <li>Keep primary workflows to 3 to 5 steps</li>
+            <li>Use progressive disclosure for advanced options</li>
+            <li>Always show immediate feedback (success, error, loading)</li>
+            <li>Never block the UI when background work can continue</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid grid--2" style="margin-top: 32px;">
+        <div class="gui-guide-card">
+          <h3>Implementation Guidelines</h3>
+          <ul class="solution-list">
+            <li>8px spacing grid; 48x48px touch targets on mobile</li>
+            <li>System font stack; 16px minimum on mobile</li>
+            <li>Visible labels; inline error text and clear focus states</li>
+            <li>Shallow navigation with clear page titles</li>
+          </ul>
+
+          <p><strong>Reference HTML:</strong></p>
+          <div class="code-block">&lt;section class="panel"&gt;
+  &lt;h2&gt;Repo Status&lt;/h2&gt;
+  &lt;div class="status-row"&gt;
+    &lt;span class="badge badge--success"&gt;Clean&lt;/span&gt;
+    &lt;button class="btn-primary"&gt;Open Repo&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;label class="field"&gt;
+    &lt;span&gt;Search&lt;/span&gt;
+    &lt;input type="text" placeholder="Type a repo name" /&gt;
+  &lt;/label&gt;
+&lt;/section&gt;</div>
+        </div>
+
+        <div class="gui-guide-card">
+          <h3>Accessibility Checklist</h3>
+          <ul class="solution-list">
+            <li>All controls have accessible names</li>
+            <li>Keyboard reachable, logical focus order</li>
+            <li>Focus visible on every interactive element</li>
+            <li>Reduced motion honored</li>
+          </ul>
+
+          <h3>Copy + Exceptions</h3>
+          <ul class="solution-list">
+            <li>Short, direct phrases and concrete labels</li>
+            <li>Error text explains what happened and how to fix it</li>
+            <li>Exceptions documented in product README</li>
+          </ul>
+
+          <p><strong>Token File:</strong> <a href="docs/b1c3.tokens.json">b1c3.tokens.json</a></p>
         </div>
       </div>
     </div>
@@ -1476,18 +1702,12 @@ import type { TruncateOptions } from 'b1c3-ux-tools';</div>
   <section class="section section--alt">
     <div class="container">
       <h2>Trusted by Accessible-First Teams</h2>
-      <div class="grid grid--2">
-        <div class="testimonial">
-          <p class="testimonial-text">"We reduced accessibility issues by 40% in our first sprint using B1C3 utilities. The code is clean, well-tested, and our dev team loves the documentation."</p>
-          <p class="testimonial-author">Sarah Chen</p>
-          <p class="testimonial-role">VP Product, TechCorp</p>
-        </div>
-        <div class="testimonial">
-          <p class="testimonial-text">"As a design system maintainer, B1C3 saved us months of internal development. We're shipping accessible components to 200+ engineers across the company."</p>
-          <p class="testimonial-author">Marcus Johnson</p>
-          <p class="testimonial-role">Design System Lead, Global Agency</p>
-        </div>
-      </div>
+        <!-- Testimonials removed as requested -->
+          <div class="early-adopters-cta" style="margin-top: 24px; text-align: center;">
+            <h3 style="color: #1a365d; margin-bottom: 12px;">B1C3 is looking for early adopters!</h3>
+            <p style="font-size: 1.1em;">Interested in accessible-first UX tools? <strong>Contact us</strong> to cooperate, provide feedback, or join our early adopter program. Help shape the future of accessible web development with B1C3.</p>
+            <p style="margin-top: 8px;"><a href="mailto:projectb1c3@proton.me" style="color: #2563eb; text-decoration: underline;">projectb1c3@proton.me</a></p>
+          </div>
     </div>
   </section>
 
@@ -1845,6 +2065,7 @@ console.log(shortened);</pre>
         <div class="footer-section">
           <h4>Product</h4>
           <a href="#features">Features</a>
+          <a href="#gui-guide">GUI Guide</a>
           <a href="#pricing">Pricing</a>
           <a href="roadmap.html">Roadmap</a>
           <a href="/docs/QUICK_REFERENCE.md">API Reference</a>
@@ -1866,7 +2087,7 @@ console.log(shortened);</pre>
         </div>
         <div class="footer-section">
           <h4>Contact</h4>
-          <a href="mailto:hello@b1c3.dev">hello@b1c3.dev</a>
+          <a href="mailto:projectb1c3@proton.me">projectb1c3@proton.me</a>
           <a href="https://github.com/B1C3Game/">GitHub</a>
           <a href="#">Documentation</a>
           <a href="#">Support</a>

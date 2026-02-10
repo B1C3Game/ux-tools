@@ -1,0 +1,41 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": ["src/index.ts"],
+  "out": "docs/api",
+  "name": "B1C3 UX Tools",
+  "includeVersion": true,
+  "excludePrivate": true,
+  "excludeProtected": true,
+  "excludeInternal": false,
+  "hideGenerator": true,
+  "readme": "README.md",
+  "theme": "default",
+  "categorizeByGroup": true,
+  "categoryOrder": [
+    "Validation",
+    "DOM",
+    "Focus",
+    "Utils",
+    "Tokens",
+    "*"
+  ],
+  "groupOrder": [
+    "Modules",
+    "Functions",
+    "Type Aliases",
+    "Interfaces",
+    "*"
+  ],
+  "navigation": {
+    "includeCategories": true,
+    "includeGroups": true
+  },
+  "searchInComments": true,
+  "cleanOutputDir": true,
+  "githubPages": false,
+  "validation": {
+    "notExported": true,
+    "invalidLink": true,
+    "notDocumented": true
+  }
+}
